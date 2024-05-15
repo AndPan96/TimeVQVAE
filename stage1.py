@@ -44,8 +44,8 @@ def train_stage1(config: dict,
     train_exp = ExpVQVAE(input_length, config, len(train_data_loader.dataset))
     config_ = copy.deepcopy(config)
     config_['dataset']['dataset_name'] = dataset_name
-    wandb_logger = WandbLogger(project=project_name, name=None, config=config_)
-    trainer = pl.Trainer(logger=wandb_logger,
+    #wandb_logger = WandbLogger(project=project_name, name=None, config=config_)
+    trainer = pl.Trainer(logger=False,#wandb_logger,
                          enable_checkpointing=False,
                          callbacks=[LearningRateMonitor(logging_interval='epoch')],
                          max_epochs=config['trainer_params']['max_epochs']['stage1'],
